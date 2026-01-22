@@ -1,0 +1,387 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrelinhas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+/>
+    <style>
+        :root {
+            --rose-soft: #F8E8EE;
+            --rose-border: #FADCE6;
+            --rose-accent: #C77B89;
+            --text-main: #2D2D2D;
+        }
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+            background-color: #FFFFFF;
+            color: var(--text-main);
+        }
+        .serif {
+            font-family: 'Playfair Display', serif;
+        }
+        .double-border {
+            border-top: 4px double var(--rose-accent);
+            border-bottom: 1px solid var(--rose-accent);
+        }
+        .article-content p::first-letter {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            font-weight: 700;
+            float: left;
+            margin-right: 0.75rem;
+            line-height: 1;
+            color: var(--rose-accent);
+        }
+        .hidden { display: none; }
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;  
+            overflow: hidden;
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react/": "https://esm.sh/react@^19.2.3/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="container mx-auto px-4 lg:px-8">
+        <div class="flex justify-between items-center py-4 border-b border-[#FADCE6]">
+            <div class="flex gap-4 items-center">
+                <span id="current-date" class="text-xs font-bold uppercase tracking-tighter text-gray-500"></span>
+            </div>
+           <div class="flex gap-4 items-center">
+    <!-- Redes sociais (desktop) -->
+    <div class="hidden md:flex gap-3 mr-4 border-r border-[#FADCE6] pr-4">
+        <a href="https://instagram.com" target="_blank"
+           class="text-[#C77B89] hover:opacity-60 transition-opacity">
+            <i class="fab fa-instagram text-lg"></i>
+        </a>
+        <a href="https://twitter.com" target="_blank"
+           class="text-[#C77B89] hover:opacity-60 transition-opacity">
+            <i class="fab fa-x-twitter text-lg"></i>
+        </a>
+        <a href="https://linkedin.com" target="_blank"
+           class="text-[#C77B89] hover:opacity-60 transition-opacity">
+            <i class="fab fa-linkedin-in text-lg"></i>
+        </a>
+    </div>
+
+    <!-- Botão contato -->
+    <a href="mailto:contato@rosegazette.com"
+       class="bg-[#C77B89] text-white px-5 py-2 rounded-sm text-xs font-bold uppercase tracking-widest
+              hover:bg-[#B66A78] transition-colors flex items-center gap-2">
+        <i class="far fa-envelope"></i>
+        Contato
+    </a>
+</div>
+
+        </div>
+
+        <div class="py-8 text-center cursor-pointer" onclick="showHome()">
+            <h1 class="serif text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter hover:text-[#C77B89] transition-colors">
+                Entrelinhas
+            </h1>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="double-border flex flex-wrap justify-center items-center py-2 gap-x-6 gap-y-2 mb-8">
+            <button onclick="showHome()" class="nav-link text-xs font-bold uppercase tracking-widest text-[#C77B89]">Página Inicial</button>
+            <button onclick="filterCategory('Cultura')" class="nav-link text-xs font-bold uppercase tracking-widest hover:text-[#C77B89]">Cultura</button>
+            <button onclick="filterCategory('Ciência & Sociedade')" class="nav-link text-xs font-bold uppercase tracking-widest hover:text-[#C77B89]">Ciência & Sociedade</button>
+            <button onclick="filterCategory('Tecnologia')" class="nav-link text-xs font-bold uppercase tracking-widest hover:text-[#C77B89]">Tecnologia</button>
+        </nav>
+
+       <script>
+        function filterCategory(category) {
+  hideAll();
+
+  document.getElementById('category-view').classList.remove('hidden');
+  document.getElementById('category-title').innerText = category;
+
+  const grid = document.getElementById('category-grid');
+
+  const filteredArticles = ARTICLES.filter(
+    article => article.category === category
+  );
+
+  if (filteredArticles.length === 0) {
+    grid.innerHTML = `
+      <p class="col-span-3 text-center italic text-gray-400">
+        Ainda não há matérias nesta categoria.
+      </p>
+    `;
+    return;
+  }
+
+  grid.innerHTML = filteredArticles
+    .map(article => createArticleCard(article))
+    .join('');
+
+  window.scrollTo(0, 0);
+}
+</script>
+    </header>
+
+    <!-- Main Content Area -->
+    <main id="main-content" class="flex-grow container mx-auto px-4 lg:px-8 pb-16">
+        <!-- Home View (Default) -->
+        <div id="home-view" class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+            <!-- Coluna Principal -->
+            <div class="lg:col-span-8 lg:border-r lg:border-[#FADCE6] lg:pr-12" id="main-column">
+                <!-- Carregado via JS -->
+            </div>
+            <!-- Sidebar -->
+            <div class="lg:col-span-4">
+                <h3 class="text-xs font-bold uppercase tracking-[0.3em] text-[#C77B89] mb-6 flex items-center gap-2">
+                    Últimas Matérias
+                    <span class="flex-grow h-px bg-[#FADCE6]"></span>
+                </h3>
+                <div id="sidebar-column" class="space-y-6">
+                    <!-- Carregado via JS -->
+                </div>
+                <!-- Newsletter Box -->
+                <div class="mt-12 bg-[#F8E8EE] p-8 rounded-sm text-center border border-[#FADCE6]">
+    <h4 class="serif text-2xl font-bold mb-4">Siga o Entrelinhas</h4>
+    <p class="text-sm text-gray-600 mb-6 italic">
+        A leitura continua nas redes.
+    </p>
+
+    <div class="flex justify-center gap-6 mb-4">
+        <a href="#"
+           class="w-12 h-12 rounded-full border border-[#C77B89] flex items-center justify-center
+                  text-[#C77B89] hover:bg-[#C77B89] hover:text-white transition-all">
+            <i class="fab fa-instagram text-xl"></i>
+        </a>
+        <!-- <a href="#"
+           class="w-12 h-12 rounded-full border border-[#C77B89] flex items-center justify-center
+                  text-[#C77B89] hover:bg-[#C77B89] hover:text-white transition-all">
+            <i class="fab fa-whatsapp text-xl"></i>
+        </a> DEPOIS COLOCAR O ZAP -->
+        <a href="#"
+           class="w-12 h-12 rounded-full border border-[#C77B89] flex items-center justify-center
+                  text-[#C77B89] hover:bg-[#C77B89] hover:text-white transition-all">
+            <i class="fab fa-x-twitter text-xl"></i>
+        </a>
+    </div>
+</div>
+
+            </div>
+        </div>
+
+        <!-- Category View (Hidden by default) -->
+        <div id="category-view" class="hidden">
+            <div class="mb-12 border-b border-[#FADCE6] pb-8">
+                <h2 id="category-title" class="serif text-5xl font-black text-center">Categoria</h2>
+            </div>
+            <div id="category-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                <!-- Carregado via JS -->
+            </div>
+        </div>
+
+        <!-- Article Detail View (Hidden by default) -->
+        <div id="article-view" class="hidden max-w-4xl mx-auto py-8">
+            <div id="article-content-target">
+                <!-- Carregado via JS -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#F8E8EE] border-t border-[#FADCE6] py-16">
+        <div class="container mx-auto px-4 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-12">
+            <div class="md:col-span-2">
+                <h2 class="serif text-4xl font-bold mb-6">Entrelinhas</h2>
+                <p class="text-gray-600 mb-6 max-w-md">
+  O mundo em segunda leitura.<br>
+  <span class="text-sm italic text-gray-500">
+    Jornalismo Independente.
+  </span>
+</p>
+            </div>
+            <div>
+  <h4 class="text-xs font-bold uppercase tracking-widest text-[#C77B89] mb-6">
+    Redes
+  </h4>
+
+   <div class="flex gap-4">
+    <!-- Instagram -->
+    <a
+      href="https://instagram.com/seuperfil"
+      target="_blank"
+      aria-label="Instagram"
+      class="w-8 h-8 rounded-full bg-[#C77B89] flex items-center justify-center
+             text-white text-xs font-bold hover:opacity-70 transition-opacity"
+    >
+     <i class="fab fa-instagram"></i>
+    </a>
+
+    <!-- Twitter / X -->
+    <a
+      href="https://twitter.com/seuperfil"
+      target="_blank"
+      aria-label="X (Twitter)"
+      class="w-8 h-8 rounded-full bg-[#C77B89] flex items-center justify-center
+             text-white text-xs font-bold hover:opacity-70 transition-opacity"
+    >
+    <i class="fab fa-x-twitter"></i>
+    </a>
+  </div>
+</div>
+
+            <div>
+                <div>
+    <h4 class="text-xs font-bold uppercase tracking-widest text-[#C77B89] mb-6">
+        Fale Conosco
+    </h4>
+
+    <div class="flex flex-col gap-4">
+        <a href="jornentrelinhas@gmail.com"
+           class="text-sm text-gray-600 hover:text-[#C77B89] transition-colors flex items-center gap-2">
+            <i class="far fa-envelope"></i>
+            jornentrelinhas@gmail.com
+        </a>
+
+       <!--  <a href="tel:+5511999999999"
+           class="text-sm text-gray-600 hover:text-[#C77B89] transition-colors flex items-center gap-2">
+            <i class="fas fa-phone-alt"></i>
+            +55 11 9999-9999
+        </a> DEPOIS COLOCAR TELEFONE -->
+    </div>
+</div>
+
+            </div>
+        </div>
+    </footer>
+
+    <script src="./articles.js"></script>
+    
+    <script>
+        function init() {
+            document.getElementById('current-date').innerText = new Date().toLocaleDateString('pt-BR', { 
+                weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' 
+            });
+            showHome();
+        }
+
+        function createArticleCard(article, type = 'secondary') {
+            if (type === 'main') {
+                return `
+                <div class="group cursor-pointer flex flex-col gap-4 border-b border-[#FADCE6] pb-8 mb-8 lg:pb-0 lg:mb-0 lg:border-b-0" onclick="viewArticle('${article.id}')">
+                    <img src="${article.imageUrl}" class="w-full h-96 object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-500 shadow-sm" />
+                    <div class="space-y-3">
+                        <span class="text-[#C77B89] font-bold text-xs uppercase tracking-widest">${article.category}</span>
+                        <h2 class="serif text-4xl font-bold leading-tight group-hover:text-[#C77B89] transition-colors">${article.title}</h2>
+                        <p class="text-gray-600 text-lg leading-relaxed">${article.summary}</p>
+                        <div class="flex items-center gap-2 text-xs text-gray-400">
+                            <span class="font-bold uppercase">Por ${article.author}</span>
+                            <span>•</span>
+                            <span>${article.date}</span>
+                        </div>
+                    </div>
+                </div>`;
+            } else if (type === 'sidebar') {
+                return `
+                <div class="group cursor-pointer border-b border-[#FADCE6] pb-4 mb-4 last:border-0" onclick="viewArticle('${article.id}')">
+                    <span class="text-[#C77B89] font-bold text-[10px] uppercase tracking-widest">${article.category}</span>
+                    <h3 class="serif text-lg font-bold leading-tight mt-1 group-hover:text-[#C77B89] transition-colors">${article.title}</h3>
+                    <p class="text-xs text-gray-500 mt-1">${article.date}</p>
+                </div>`;
+            } else {
+                return `
+                <div class="group cursor-pointer flex flex-col gap-3 border-b border-[#FADCE6] pb-6" onclick="viewArticle('${article.id}')">
+                    <img src="${article.imageUrl}" class="w-full h-48 object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-500" />
+                    <span class="text-[#C77B89] font-bold text-[10px] uppercase tracking-widest">${article.category}</span>
+                    <h3 class="serif text-xl font-bold leading-tight group-hover:text-[#C77B89] transition-colors">${article.title}</h3>
+                    <p class="text-sm text-gray-600 line-clamp-2">${article.summary}</p>
+                </div>`;
+            }
+        }
+
+        function showHome() {
+  hideAll();
+  document.getElementById('home-view').classList.remove('hidden');
+
+  const mainCol = document.getElementById('main-column');
+  const sideCol = document.getElementById('sidebar-column');
+
+  if (!window.ARTICLES || ARTICLES.length === 0) {
+    mainCol.innerHTML = '<p class="italic text-gray-400">Nenhuma notícia publicada ainda.</p>';
+    sideCol.innerHTML = '';
+    return;
+  }
+
+  mainCol.innerHTML = createArticleCard(ARTICLES[0], 'main');
+
+  let gridHtml = '<div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12 pt-12 border-t border-[#FADCE6]">';
+  if (ARTICLES[1]) gridHtml += createArticleCard(ARTICLES[1]);
+  if (ARTICLES[2]) gridHtml += createArticleCard(ARTICLES[2]);
+  gridHtml += '</div>';
+
+  mainCol.innerHTML += gridHtml;
+  sideCol.innerHTML = ARTICLES.slice(3).map(a => createArticleCard(a, 'sidebar')).join('');
+
+  updateNav(null);
+}
+        function viewArticle(id) {
+            hideAll();
+            const article = ARTICLES.find(a => a.id === id);
+            const view = document.getElementById('article-view');
+            view.classList.remove('hidden');
+            
+            document.getElementById('article-content-target').innerHTML = `
+                <div class="mb-8 text-center">
+                    <span class="text-[#C77B89] font-bold text-sm uppercase tracking-[0.2em] mb-4 block">${article.category}</span>
+                    <h1 class="serif text-4xl md:text-6xl font-bold leading-tight mb-6">${article.title}</h1>
+                    <p class="text-xl text-gray-600 mb-8 italic">"${article.summary}"</p>
+                    <div class="flex justify-center items-center gap-4 text-sm text-gray-500 border-y border-[#FADCE6] py-4">
+                        <span class="font-bold text-[#2D2D2D] uppercase">Por ${article.author}</span>
+                        <span>•</span>
+                        <span>${article.date}</span>
+                    </div>
+                </div>
+                <img src="${article.imageUrl}" class="w-full h-[500px] object-cover mb-12 shadow-sm" />
+                <div class="article-content serif text-xl leading-relaxed text-gray-800 space-y-6">
+                    <p>${article.content}</p>
+                </div>
+            `;
+            window.scrollTo(0, 0);
+        }
+
+        function hideAll() {
+            document.getElementById('home-view').classList.add('hidden');
+            document.getElementById('category-view').classList.add('hidden');
+            document.getElementById('article-view').classList.add('hidden');
+        }
+
+        function updateNav(activeCat) {
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('text-[#C77B89]');
+                link.classList.add('hover:text-[#C77B89]');
+                if ((!activeCat && link.innerText === 'Página Inicial') || (link.innerText === activeCat)) {
+                    link.classList.add('text-[#C77B89]');
+                }
+            });
+        }
+
+        window.onload = init;
+    </script>
+</body>
+</html>
