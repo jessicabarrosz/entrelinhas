@@ -60,7 +60,7 @@ Diante dessa conjuntura aversiva, o córtex pré-frontal surge como o responsáv
 
 Nesse panorama, reinterpretar fatos, ajustar discursos ou transferir encargos torna-se uma solução mais viável dentro da vertente neurobiológico, uma vez que essas estratégias exigem menos ativação prolongada do córtex pré-frontal e contribuem para a restauração mais rápida do equilíbrio interno (um princípio conhecido como homeostase). Quando o conflito é atenuado dessa forma, ocorre também uma liberação relativa de dopamina, associada à sensação de alívio, coerência e recuperação do controle subjetivo.
 
-Tendo esse alívio dopaminérgico sob perspectiva, vale ressaltar sua atuação como reforço bioquímico. O cérebro aprende que justificar o erro reduz o mal-estar de maneira mais imediata do que corrigi-lo. Com o tempo, esse padrão se consolida, fazendo com que, diante de novas inconsistências, o sistema neural tenda a repetir aquilo que já se mostrou eficaz para aliviar o desconforto fisiológico, mesmo que isso implique a manutenção de decisões equivocadas.
+Tendo esse alívio dopaminérgico sob perspectiva, vale ressaltar sua atuação como reforço bioquímico. O cérebro aprende que justificar o erro reduz o mal-estar de maneira mais imediata do que corrigi-lo. Com o tempo, esse padrão se consolida, fazendo com que, diante de novas inconsistências, o sistema neural tenda a repetir aquilo que já se mostrou eficaz para aliviar o desconforto fisiológico, mesmo que isso implique na manutenção de decisões equivocadas.
 
 Assim, percebe-se que insistir naquilo que é falho está mais relacionado ao próprio funcionamento cerebral do que à ignorância em si. Sabemos que estamos errados, sentimos o conflito e, ainda assim, escolhemos o caminho que alivia mais rapidamente o desconforto. A boa notícia é que esse processo não é imutável, o cérebro pode ser treinado a tolerar o custo emocional da mudança, mas isso exige algo que ele naturalmente evita: permanecer no desconforto sem fugir dele. No fim, deixar de insistir no erro exige um tipo especial de coragem, aquela psicológica, focada em sustentar a tensão entre o que somos e o que precisamos mudar.
                 
@@ -97,4 +97,5 @@ VAN VEEN, Vincent; KRUGER, Julia; SCHOOLER, Jonathan W.; CARTER, Cameron S. Neur
 
         ];
        
+
 window.ARTICLES = ARTICLES;
